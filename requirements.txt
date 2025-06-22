@@ -2,4 +2,3 @@ Flask==2.2.5
 nltk==3.8.1
 pymupdf==1.23.7
 gunicorn==21.2.0
-
