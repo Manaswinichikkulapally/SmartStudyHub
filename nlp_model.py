@@ -1,15 +1,12 @@
-"""
-nlp_model.py - Text summarization & tagging for SmartStudyHub
-
-© 2025 Chikkulapally Manaswini
-This file is part of the SmartStudyHub project.
-Any reproduction or distribution without permission is prohibited.
-"""
 import fitz  # PyMuPDF
 import nltk
 import re
 
-nltk.download('punkt')
+# ✅ Smart way to avoid downloading every time
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
 # Extract text from uploaded PDF
 def extract_text_from_pdf(file_path):
@@ -48,4 +45,5 @@ def process_pdf(file_path):
     text = clean_text(text)
     summary = summarize_text(text)
     tag = predict_tag(text)
+    summary += "\n\n© 2025 Chikkulapally Manaswini - SmartStudyHub"
     return summary, tag
