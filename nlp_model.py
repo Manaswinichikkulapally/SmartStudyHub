@@ -2,13 +2,11 @@ import fitz  # PyMuPDF
 import nltk
 import re
 
-# ✅ Smart way to avoid downloading every time
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt')
 
-# Extract text from uploaded PDF
 def extract_text_from_pdf(file_path):
     text = ''
     doc = fitz.open(file_path)
@@ -16,15 +14,13 @@ def extract_text_from_pdf(file_path):
         text += page.get_text()
     return text
 
-# Clean and summarize text
 def clean_text(text):
     return re.sub(r'\s+', ' ', text)
 
 def summarize_text(text):
     sentences = nltk.sent_tokenize(text)
-    return ' '.join(sentences[:2])  # first 2 sentences
+    return ' '.join(sentences[:2])
 
-# Predict tag based on keywords
 def predict_tag(text):
     keywords = {
         'SQL': ['query', 'sql', 'table', 'database'],
@@ -39,7 +35,6 @@ def predict_tag(text):
             return tag
     return "General"
 
-# Main processor function
 def process_pdf(file_path):
     text = extract_text_from_pdf(file_path)
     text = clean_text(text)

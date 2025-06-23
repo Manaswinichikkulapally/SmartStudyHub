@@ -1,18 +1,3 @@
-"""
-SmartStudyHub - AI Powered Study Resource App
-
-Copyright (c) 2025 Chikkulapally Manaswini
-Unauthorized copying, distribution, or reuse of this code is strictly prohibited.
-This software is intended only for academic demonstration.
-
-GitHub: https://github.com/YourUsername/SmartStudyHub
-"""
-
-print("⚠️  Copyright Notice")
-print("📚 Project: SmartStudyHub")
-print("👩‍💻 Developer: Chikkulapally Manaswini")
-print("🚫 Unauthorized use or plagiarism is not allowed.\n")
-
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import os
 from werkzeug.utils import secure_filename
@@ -23,7 +8,6 @@ UPLOAD_FOLDER = 'uploads'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Create uploads folder if not exists
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
@@ -51,9 +35,5 @@ def upload():
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-# ✅ Correct PORT for Render
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
